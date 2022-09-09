@@ -15,7 +15,9 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "axios": "^0.21.4",
+    "follow-redirects": "^1.14.7",
     "moment": "^2.29.4",
+    "node-fetch": "^2.6.7",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-file-base64": "^1.0.3",
