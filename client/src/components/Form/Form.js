@@ -3,7 +3,7 @@ import useStyles from './styles';
 const Form = () => {
   const classes = useStyles();
   return (
-    <div>Form</div>
+    <h1>Form</h1>
   )
 }
 

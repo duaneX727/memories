@@ -8,12 +8,13 @@ import postRoutes from './routes/posts.js';
 const app = express();
 
 
-app.use(bodyParser.json({ linit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ linit: "30mb", extended: true }));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use('/posts', postRoutes);
 
 const CONNECTION_URL = "mongodb+srv://mdmitch7:07032018911@cluster0.j0tc6hp.mongodb.net/?retryWrites=true&w=majority";
+
 const PORT = process.env.PORT || 3060;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
