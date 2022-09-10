@@ -16,7 +16,7 @@ const Form = () => {
   }
   return (
     <Paper className={classes.paper}>
-      <Form autocomplete="off" noValidate className={classes.form} onSubmit={handleSubmit}>
+      <form autoComplete="off" noValidate className={classes.form} onSubmit={handleSubmit}>
         <Typography variant="h6">
           Creating a Memory
         </Typography>
@@ -61,7 +61,7 @@ const Form = () => {
         </div>
         <Button 
           className={classes.buttonSubmit}
-          variant="container"
+          variant="contained"
           color="primary"
           size="large"
           type="submit"
@@ -72,7 +72,7 @@ const Form = () => {
           size="small"
           onClick={clear}
           fullWidth>Clear</Button>
-      </Form>
+      </form>
     </Paper>
   )
 }
