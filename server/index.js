@@ -14,12 +14,12 @@ app.use(cors());
 app.use('/posts', postRoutes);
 
 config();
-const CONNECTION_URL = process.env.DB_URI;
+//const CONNECTION_URL = process.env.DB_URI;
 
 const PORT = process.env.PORT || 3060;
 
 console.log('Connecting to MongoDB Atlas cluster...');
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, () => console.log(`Successfully connected to MongoDB Atlas!
     Server running on port: ${PORT}`)
     ))
