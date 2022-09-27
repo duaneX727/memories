@@ -20,7 +20,7 @@ const Form = ({currentId, setCurrentId}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(currentId) {
+    if(!currentId === 0) {
       dispatch(updatePost(currentId, postData)); 
     } 
     else { 
@@ -29,7 +29,7 @@ const Form = ({currentId, setCurrentId}) => {
       clear();
   }
   const clear = () => {
-    setCurrentId(null);
+    setCurrentId(0);
     setPostData({creator: '', title: '', message: '', tags: '', selectedFile: ''});
   }
   return (
@@ -47,7 +47,7 @@ const Form = ({currentId, setCurrentId}) => {
           onChange={ e => setPostData({...postData, tags: e.target.value})}
         />
         <div className={classes.fileInput}>
-          <FileBase type="file" multiple={false} onDone={({base64}) => setPostData({...postData, selectedFile: base64})}
+          <FileBase type="file" multiple={false} onDone={({base64}) => setPostData({...postData, selectedFile:base64})}
           />
         </div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
