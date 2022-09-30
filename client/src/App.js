@@ -32,7 +32,6 @@ const App = () => {
           </Grid>
         </Container>
       </Grow>
-
     </Container>
   )
 }
