@@ -89,7 +89,7 @@ const Auth = () => {
             {
             isSignUp ? 'Sign Up' : 'Sign In'
           } </Button>
-          <Grid container justify='flex-end'>
+          <Grid container justify='center'>
             <Grid item>
               <Button onClick={switchMode}>
                 {
