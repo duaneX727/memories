@@ -1,41 +1,38 @@
-import React, {useState} from 'react';
-// import useHistory, {Link} from 'use-history';
-// import * as dotenv from 'dotenv';
+import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {
-  Avatar,
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  Container
-} from '@material-ui/core';
+import {Avatar,Button,Paper,Grid,Typography,Container} from '@material-ui/core';
 import useStyles from './styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import {AUTH} from '../../constants/actionTypes';
 import Icon from "./icon";
 import {GoogleLogin} from 'react-google-login';
-
+import env from "react-dotenv";
+import { gapi } from "gapi-script";
 
 const Auth = () => {
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: env.REACT_APP_GOOGLE_CLIENT_ID,
+        project_id:'mem_app2',
+        client_secret: env.REACT_APP_SECRET_KEY
+    });
+    }
+  
+    gapi.load('client:auth2', start);
+  }, []);
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const dispatch = useDispatch();
   const history = useNavigate();
-  const googleSuccess = async (res) => {
-    const result = res ?. profileObj;
-    const token = res ?. tokenId;
+  const googleSuccess = async res => {
+    const result = res?.profileObj;
+    const token = res?.tokenId;
     try {
-      dispatch({
-        type: AUTH,
-        data: {
-          result,
-          token
-        }
-      });
+      dispatch({type: AUTH, data: {result,token}});
       history.push('/');
     } catch (err) {
       console.log(err);
@@ -105,11 +102,12 @@ const Auth = () => {
           isSignUp ? 'Sign Up' : 'Sign In'
         } </Button>
 
-        <GoogleLogin clientId="911292236726-ep00qa0vjkvfi5feqp36n4sepm29o8s6.apps.googleusercontent.com"
-          render={
-            (renderProps) => (<Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}
-              startIcon={<Icon/>}
-              variant="contained">
+        <GoogleLogin 
+           clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
+           render={
+             (renderProps) => (<Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}
+             startIcon={<Icon/>}
+             variant="contained">
               Google Sign In
             </Button>)}
           onSuccess={googleSuccess}
@@ -127,6 +125,5 @@ const Auth = () => {
     </Paper>
   </Container>);
 };
-
 
 export default Auth;
