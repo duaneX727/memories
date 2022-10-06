@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Avatar,Button } from '@material-ui/core';
 import useStyles from './styles';
 import memories from '../../images/memories.png';
-import { useDispatch } from 'react-redux';
+
 
 const Navbar = () => {
   const classes = useStyles();
