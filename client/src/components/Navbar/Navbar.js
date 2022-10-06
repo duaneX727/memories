@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Avatar,Button } from '@material-ui/core';
+import {useDispatch} from "react-redux";
 import useStyles from './styles';
 import memories from '../../images/memories.png';
 
@@ -9,11 +10,12 @@ const Navbar = () => {
   const classes = useStyles();
   //const user = null;
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const history = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logout = () => {
-    dispatch({ type: actionType.LOGOUT });
+    dispatch({ type: 'LOGOUT' });
 
-    history.push('/auth');
+    navigate('/auth');
 
     setUser(null);
   }
