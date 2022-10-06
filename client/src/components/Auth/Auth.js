@@ -14,7 +14,7 @@ import { gapi } from "gapi-script";
 const Auth = () => {
   useEffect(() => {
     function start() {
-      gapi.client.init({
+      gapi.auth2.init({
         clientId: env.REACT_APP_GOOGLE_CLIENT_ID,
         project_id:'mem_app2',
         client_secret: env.REACT_APP_SECRET_KEY
@@ -27,13 +27,13 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const googleSuccess = async res => {
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
       dispatch({type: AUTH, data: {result,token}});
-      history.push('/');
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
