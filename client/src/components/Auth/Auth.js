@@ -15,6 +15,7 @@ const Auth = () => {
   useEffect(() => {
     function start() {
       gapi.auth2.init({
+        
         clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         project_id:'mem_app2',
         client_secret: process.env.REACT_APP_SECRET_KEY
