@@ -35,8 +35,8 @@ bower_components
 .lock-wscript
 
 # Build
-build/
-
+client/build/
+client/public/
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 

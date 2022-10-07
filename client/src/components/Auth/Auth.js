@@ -15,9 +15,9 @@ const Auth = () => {
   useEffect(() => {
     function start() {
       gapi.auth2.init({
-        clientId: env.REACT_APP_GOOGLE_CLIENT_ID,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         project_id:'mem_app2',
-        client_secret: env.REACT_APP_SECRET_KEY
+        client_secret: process.env.REACT_APP_SECRET_KEY
     });
     }
   
@@ -32,7 +32,7 @@ const Auth = () => {
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
-      dispatch({type: AUTH, data: {result,token}});
+      dispatch({type: 'AUTH', data: {result,token}});
       navigate('/');
     } catch (err) {
       console.log(err);
@@ -103,7 +103,7 @@ const Auth = () => {
         } </Button>
 
         <GoogleLogin 
-           clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
+           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
            render={
              (renderProps) => (<Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}
              startIcon={<Icon/>}
